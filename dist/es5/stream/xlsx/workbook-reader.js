@@ -73,7 +73,9 @@ utils.inherits(WorkbookReader, events.EventEmitter, {
     var stream = this.stream = this._getStream(input);
     var zip = this.zip = unzip.Parse();
 
-    stream.on('close', function () {
+    // TODO: figure out how to stop parsing zip
+    // probably entry.autodrain is a solution
+    stream.on('error', function () {
       zip.removeAllListeners('entry');
       zip.removeAllListeners('close');
       zip.destroy();
