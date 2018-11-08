@@ -11711,11 +11711,11 @@ XLSX.prototype = {
     }).then(function () {
       return _this2.addWorkbookRels(zip, model);
     }).then(function () {
+      return _this2.addSharedStrings(zip, model);
+    }) // WARNING: moved to the top, because previosly worksheets were not parsed correctly
+    .then(function () {
       return _this2.addWorksheets(zip, model);
     }).then(function () {
-      return _this2.addSharedStrings(zip, model);
-    }) // always after worksheets
-    .then(function () {
       return _this2.addDrawings(zip, model);
     }).then(function () {
       var promises = [_this2.addThemes(zip, model), _this2.addStyles(zip, model)];
